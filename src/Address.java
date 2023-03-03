@@ -4,9 +4,9 @@ public class Address {
     private String apartmentNum;
     private String city;
     private String state;
-    private int zipCode;
+    private String zipCode;
 
-    public Address(String sNum, String sName, String aptNum, String c, String s, int zc) {
+    public Address(String sNum, String sName, String aptNum, String c, String s, String zc) {
         streetNum = sNum;
         streetName = sName;
         apartmentNum = aptNum;
@@ -39,7 +39,7 @@ public class Address {
 
         String[] remaining = split[1].split(" ");
         state = remaining[0];
-        zipCode = Integer.parseInt(remaining[1]);
+        zipCode = remaining[1];
     }
 
     public String getStreetNum() {
@@ -82,12 +82,18 @@ public class Address {
         this.state = state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String toString() {
+        String str = streetNum + " " + streetName + " Apt " + apartmentNum + ", " + city + ", " + state + " " + zipCode;
+
+        return str;
     }
 
 
