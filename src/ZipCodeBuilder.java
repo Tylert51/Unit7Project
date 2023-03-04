@@ -6,19 +6,56 @@ import java.util.ArrayList;
 
 public class ZipCodeBuilder {
 
-    public static ArrayList<String> getZipCodes(String fileName) {
-        ArrayList<String> zipCodes = new ArrayList<String>();
+    public static ArrayList<ZipCode> getZipCodes(String fileName) {
+        ArrayList<ZipCode> zipCodes = new ArrayList<>();
+
         try {
             File zipData = new File(fileName);
             Scanner reader = new Scanner(zipData);
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                zipCodes.add(line);
+                String[] temp;
+                temp = line.split("---");
+
+                zipCodes.add(new ZipCode(temp[0], temp[1], temp[2]));
             }
         } catch (FileNotFoundException noFile) {
             System.out.println("File not found!");
             return null;
         }
         return zipCodes;
+    }
+
+    public static ArrayList<Street> getStreets(String fileName) {
+        ArrayList<Street> streets = new ArrayList<>();
+
+        try {
+            File zipData = new File(fileName);
+            Scanner reader = new Scanner(zipData);
+            String[] temp;
+            String[] temp2;
+            String state = "";
+            ArrayList<String> sNames = new ArrayList<>();
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                temp = line.split("---");
+
+                state = temp[0];
+                temp2 = temp[1].split(":::");
+
+                for (int i = 0; i < temp2.length; i++) {
+                    sNames.add(temp2[i]);
+                }
+
+                streets.add(new Street(state, (ArrayList<String>) sNames.clone()));
+                sNames.clear();
+            }
+
+        } catch (FileNotFoundException noFile) {
+            System.out.println("File not found!");
+            return null;
+        }
+        return streets;
     }
 }

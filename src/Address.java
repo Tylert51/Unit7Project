@@ -30,8 +30,9 @@ public class Address {
         int indOfAPT = restOfAds.indexOf("Apt");
 
         streetName = restOfAds.substring(0, indOfAPT - 1);
+        restOfAds = restOfAds.substring(restOfAds.indexOf("Apt"));
         int indOfComma = restOfAds.indexOf(", ");
-        apartmentNum = restOfAds.substring(indOfAPT + 4, indOfComma);
+        apartmentNum = restOfAds.substring(restOfAds.indexOf("Apt") + 4, indOfComma);
 
         restOfAds = restOfAds.substring(indOfComma + 2);
         String[] split = restOfAds.split(", ");

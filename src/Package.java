@@ -62,4 +62,13 @@ public class Package {
     public void setWidth(double width) {
         this.width = width;
     }
+
+    public String toString() {
+        return "Origin Address: " + origin +
+                "\nDestination Address: " + destination +
+                "\nWeight: " + weight +
+                "\nHeight: " + height +
+                "\nLength: " + length +
+                "\nWidth: " + width;
+    }
 }
