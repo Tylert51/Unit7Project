@@ -39,8 +39,17 @@ public class Address {
         city = split[0];
 
         String[] remaining = split[1].split(" ");
-        state = remaining[0];
-        zipCode = remaining[1];
+
+        int size = remaining.length;
+
+        state = "";
+        zipCode = remaining[size - 1];
+        for(int i = 0; i < size - 1; i++) {
+            state += remaining[i];
+            if(i < size - 2) {
+                state += " ";
+            }
+        }
     }
 
     public String getStreetNum() {

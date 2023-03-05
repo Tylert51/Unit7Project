@@ -18,6 +18,8 @@ public class PostageCalculator {
         if (weight > 40) {
             cost += (0.05 * (40 / 0.1));
             cost += (0.1 * ((weight - 40) / 0.1));
+        } else {
+            cost += (0.05 * (weight / 0.1));
         }
 
         return cost;
@@ -41,6 +43,8 @@ public class PostageCalculator {
         if (weight > 40) {
             cost += (0.05 * (40 / 0.1));
             cost += (0.1 * ((weight - 40) / 0.1));
+        } else {
+            cost += (0.05 * (weight / 0.1));
         }
 
         return cost;
@@ -67,6 +71,8 @@ public class PostageCalculator {
         if (weight > 40) {
             cost += (0.05 * (40 / 0.1));
             cost += (0.1 * ((weight - 40) / 0.1));
+        } else {
+            cost += (0.05 * (weight / 0.1));
         }
 
         return cost;

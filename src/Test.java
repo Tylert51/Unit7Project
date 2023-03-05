@@ -5,7 +5,9 @@ public class Test {
 
         PackageSimulator simulator = new PackageSimulator();
 
-        System.out.println(simulator.runOneSim(1));
+        for(int i = 0; i < 100; i++) {
+            System.out.println(simulator.runOneSim(1));
+        }
 
     }
 }

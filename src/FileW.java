@@ -9,13 +9,26 @@ public class FileW {
     public static void main(String[] args) {
         int counter = 1;
 
-        ArrayList<Street> streets = new ArrayList<>();
+        ArrayList<Street> streets = ZipCodeBuilder.getStreets("src/streetNames");
+
+        for(Street s : streets) {
+            ArrayList<String> streetN = s.getStreetNames();
+
+            for(int i = 0; i < streetN.size(); i++) {
+                String name = streetN.get(i);
+                int indOfComma = name.indexOf(",");
+
+                if(indOfComma != -1) {
+                    streetN.set(i, name.substring(0, indOfComma));
+                }
+            }
+        }
 
 
 
 
         try {
-            File f = new File("src/test2");
+            File f = new File("src/streetNames");
             f.createNewFile();
             FileWriter fw = new FileWriter(f);
 
