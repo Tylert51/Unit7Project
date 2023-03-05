@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PackageSimulator {
@@ -28,14 +29,14 @@ public class PackageSimulator {
         }
 
         str += "----------------------------------------\n";
-        str += "Total cost of all packages: " + roundToTwo(generateTotalCost());
+        str += "Total cost of all packages: $" + roundToTwo(generateTotalCost());
 
         resetSimulation();
 
         return str;
     }
 
-    public void resetSimulation() {
+    private void resetSimulation() {
         packages.clear();
     }
 
@@ -82,20 +83,20 @@ public class PackageSimulator {
         return rand + "";
     }
 
-    public String runOneSim(int num) {
+    private String runOneSim(int num) {
         String str = "Package " + num + ": ----------------------------------------\n";
         int rand = (int) (Math.random() * 10);
         Street randStreet = getRandStreet();
         ZipCode randZip = getZipCode(randStreet.getState());
-        Address origin = new Address(genRandThreeNum() + " " + randStreet.getStreetNames().get(rand) + " Apt " + getRandAptNum() + ", " + randZip.getState() + ", " + randZip.getCity() + " " + randZip.getZipCode());
+        Address origin = new Address(genRandThreeNum() + " " + randStreet.getStreetNames().get(rand) + " Apt " + getRandAptNum() + ", " + randZip.getCity() + ", " + randZip.getState() + " " + randZip.getZipCode());
         rand = (int) (Math.random() * 10);
         Street randStreet2 = getRandStreet();
         ZipCode randZip2 = getZipCode(randStreet2.getState());
-        Address destination = new Address(genRandThreeNum() + " " + randStreet2.getStreetNames().get(rand) + " Apt " + getRandAptNum() + ", " + randZip2.getState() + ", " + randZip2.getCity() + " " + randZip2.getZipCode());
+        Address destination = new Address(genRandThreeNum() + " " + randStreet2.getStreetNames().get(rand) + " Apt " + getRandAptNum() + ", " + randZip2.getCity() + ", " + randZip2.getState() + " " + randZip2.getZipCode());
         Package pack = new Package(origin, destination, getRandWeight(), getRandDimension(), getRandDimension(), getRandDimension());
 
         str += pack;
-        str += "\nCost: " + roundToTwo(PostageCalculator.calculateCost(pack));
+        str += "\nCost: $" + roundToTwo(PostageCalculator.calculateCost(pack));
 
         packages.add(pack);
 
@@ -103,8 +104,9 @@ public class PackageSimulator {
     }
 
 
-    private static double roundToTwo(double num) {
-        return Math.round(num * 100) / 100.0;
+    private static String roundToTwo(double num) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(num);
     }
 
 
